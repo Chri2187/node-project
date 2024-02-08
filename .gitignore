@@ -3,3 +3,4 @@ nodejs-test.iml
 node_modules
 todo.txt
 dist
+.env
