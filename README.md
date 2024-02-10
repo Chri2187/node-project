@@ -41,25 +41,25 @@ Dopo aver clonato questo repository, lo si estenda con il fine di realizzare una
         <body>Hello World!</body>
     </html>
     ```
-      </td>
-      </tr>
-      </tbody>
-      </table>
+</td>
+</tr>
+</tbody>
+</table>
 
     Risponde con una pagina HTML contenente il messaggio "Hello World!"
 
 -   <table>
-      <thead>
-      <tr>
-      <th>Path</th>
-      <th>Metodo</th>
-      <th>Esempio di body in richiesta</th>
-      <th>Esempio di body in risposta</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-      <td>
+  <thead>
+  <tr>
+  <th>Path</th>
+  <th>Metodo</th>
+  <th>Esempio di body in richiesta</th>
+  <th>Esempio di body in risposta</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>
 
   `/books`
 
@@ -77,7 +77,6 @@ Dopo aver clonato questo repository, lo si estenda con il fine di realizzare una
     "releaseDate": "1983-11-14"
   }
   ```
-
     </td>
 <td>
 
