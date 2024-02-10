@@ -16,164 +16,162 @@ Ai fini di sviluppo, si consiglia di installare anche:
 
 Dopo aver clonato questo repository, lo si estenda con il fine di realizzare una piccola applicazione in Node.js facendo uso del framework Express (già installato). L'applicazione da sviluppare consiste di un webserver (in ascolto all'URL http://localhost:8080) che deve esporre un'API con le seguenti rotte:
 
--            <table>
-             <thead>
-             <tr>
-             <th>Path</th>
-             <th>Metodo</th>
-             <th>Esempio di body di risposta</th>
-             </tr>
-             </thead>
-             <tbody>
-             <tr>
-             <td>
+- <table>
+    <thead>
+    <tr>
+    <th>Path</th>
+    <th>Metodo</th>
+    <th>Esempio di body di risposta</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>
 
-             ```/```
+    `/`
 
-             </td>
-             <td>GET</td>
-             <td>
+    </td>
+    <td>GET</td>
+    <td>
 
-             ```HTML
-             <!DOCTYPE html>
-             <html>
-                 <head></head>
-                 <body>Hello World!</body>
-             </html>
-             ```
-
-             </td>
-             </tr>
-             </tbody>
-             </table>
-
-             Risponde con una pagina HTML contenente il messaggio "Hello World!"
-
--            <table>
-             <thead>
-             <tr>
-             <th>Path</th>
-             <th>Metodo</th>
-             <th>Esempio di body in richiesta</th>
-             <th>Esempio di body in risposta</th>
-             </tr>
-             </thead>
-             <tbody>
-             <tr>
-             <td>
-
-             ```/books```
-
-             </td>
-             <td>POST</td>
-             <td>
-
-             ```json
-             {
-               "name": "Treasure Island",
-               "author": "Robert Louis Stevensonr",
-               "publisher": "Cassell and Company",
-               "edition": 1,
-               "pages": 292,
-               "releaseDate": "1983-11-14"
-             }
-             ```
-
-             </td>
-
-           <td>
-
-    ```json
-    {
-        "id": "a9f694c5-2099-404c"
-    }
+    ```HTML
+    <!DOCTYPE html>
+    <html>
+        <head></head>
+        <body>Hello World!</body>
+    </html>
     ```
+      </td>
+      </tr>
+      </tbody>
+      </table>
 
-             </td>
-             </tr>
-             </tbody>
-             </table>
+    Risponde con una pagina HTML contenente il messaggio "Hello World!"
+
+-   <table>
+      <thead>
+      <tr>
+      <th>Path</th>
+      <th>Metodo</th>
+      <th>Esempio di body in richiesta</th>
+      <th>Esempio di body in risposta</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>
+
+  `/books`
+
+      </td>
+      <td>POST</td>
+      <td>
+
+  ```json
+  {
+    "name": "Treasure Island",
+    "author": "Robert Louis Stevensonr",
+    "publisher": "Cassell and Company",
+    "edition": 1,
+    "pages": 292,
+    "releaseDate": "1983-11-14"
+  }
+  ```
+
+    </td>
+<td>
+
+```json
+{
+    "id": "a9f694c5-2099-404c"
+}
+```
+
+</td>
+</tr>
+</tbody>
+</table>
 
     Inserisce all'interno della collection `books` di MongoDB un nuovo document con i dati presenti nel body della chiamata. Se l'oggetto passato nel body non rispetta il modello ([vedi sotto](#database)) la rotta deve rispondere con un opportuno codice di errore. La rotta deve rispondere con un oggetto JSON contenente l'id del documento appena aggiunto.
 
--            <table>
-             <thead>
-             <tr>
-             <th>Path</th>
-             <th>Metodo</th>
-             <th>Esempio di body in risposta</th>
-             </tr>
-             </thead>
-             <tbody>
-             <tr>
-             <td>
+-                        <table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Metodo</th>
+<th>Esempio di body in risposta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-             ```/books/[id]```
+`/books/[id]`
 
-             </td>
-             <td>GET</td>
-             <td>
+</td>
+<td>GET</td>
+<td>
 
-             ```json
-             {
-               "name": "Treasure Island",
-               "author": "Robert Louis Stevensonr",
-               "publisher": "Cassell and Company",
-               "edition": 1,
-               "pages": 292,
-               "releaseDate": "1983-11-14"
-             }
-             ```
+```json
+{
+    "name": "Treasure Island",
+    "author": "Robert Louis Stevensonr",
+    "publisher": "Cassell and Company",
+    "edition": 1,
+    "pages": 292,
+    "releaseDate": "1983-11-14"
+}
+```
 
-             </td>
-             </tr>
-             </tbody>
-             </table>
+</td>
+</tr>
+</tbody>
+</table>
 
     Preleva dalla collection `books` di MongoDB il documento con `_id` uguale al parametro `[id]` specificato nel path e lo restituisce in formato JSON. Se tale documento non è presente nella collection la rotta risponde con un opportuno codice di errore.
 
--            <table>
-             <thead>
-             <tr>
-             <th>Path</th>
-             <th>Metodo</th>
-             <th>Esempio di body in risposta</th>
-             </tr>
-             </thead>
-             <tbody>
-             <tr>
-             <td>
+-                        <table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Metodo</th>
+<th>Esempio di body in risposta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-             ```/songs```
+`/songs`
 
-             </td>
-             <td>GET</td>
-             <td>
+</td>
+<td>GET</td>
+<td>
 
-             ```
-             [
-               {
-                 "genre": "Jazz",
-                 "songs": [
-                     ...
-                 ]
-               },
-               {
-                 "genre": "Pop",
-                 "songs": [
-                     ...
-                 ]
-               },
-               ...
-             ]
-             ```
+```
+[
+  {
+    "genre": "Jazz",
+    "songs": [
+        ...
+    ]
+  },
+  {
+    "genre": "Pop",
+    "songs": [
+        ...
+    ]
+  },
+  ...
+]
+```
 
-             </td>
-             </tr>
-             </tbody>
-             </table>
+</td>
+</tr>
+</tbody>
+</table>
 
-    Recupera una lista di pezzi musicali chiamando il servizio esterno Songs ([vedi sotto](#songs)), ne aggrega i dati ottenuti e restituisce la lista JSON di **tutti** i generi musicali, ciascuno contenente l'array dei pezzi musicali che ne fanno parte.
+Recupera una lista di pezzi musicali chiamando il servizio esterno Songs ([vedi sotto](#songs)), ne aggrega i dati ottenuti e restituisce la lista JSON di **tutti** i generi musicali, ciascuno contenente l'array dei pezzi musicali che ne fanno parte.
 
 ### Database
 
@@ -204,112 +202,78 @@ I servizi esterni rappresentano una simulazione in locale di API di terze parti 
 
 Il servizio esterno Songs viene avviato automaticamente dal comando `npm start` ed è in ascolto all'URL http://localhost:9009. Tale servizio esterno è un'API che espone le rotte:
 
--            <table>
-             <thead>
-             <tr>
-             <th>Path</th>
-             <th>Metodo</th>
-             <th>Esempio di body in risposta</th>
-             </tr>
-             </thead>
-             <tbody>
-             <tr>
-             <td>
+-                        <table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Metodo</th>
+<th>Esempio di body in risposta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
 
-             ```/count```
+`/count`
 
-             </td>
-             <td>GET</td>
-             <td>
+</td>
+<td>GET</td>
+<td>
 
-             ```json
-             {
-               "count": 1800
-             }
-             ```
+```json
+{
+    "count": 1800
+}
+```
 
-             </td>
-             </tr>
-             </tbody>
-             </table>
+</td>
+</tr>
+</tbody>
+</table>
 
     Restituisce il numero totale di pezzi musicali.
 
--   <table>
-    <thead>
-    <tr>
-    <th>Path</th>
-    <th>Metodo</th>
-    <th>Esempio di body in risposta</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-    <td>
+-   
+Restituisce una lista JSON di pezzi musicali. Questa rotta **è paginata** e richiede pertanto due parametri nel query string:
 
-    `/`
+ <table>
+ <thead>
+ <tr>
+ <th>Chiave</th>
+ <th>Valore</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td>
 
-    </td>
-    <td>GET</td>
-    <td>
 
-    ```
-    [
-      {
-        "id": "e941a0a2-818f",
-        "name": "La vie en rose",
-        "author": "Édith Piaf",
-        "genre": "Chanson",
-        "description":  "..."
-      },
-      ...
-    ]
-    ```
+`offset`
 
-     </td>
-     </tr>
-     </tbody>
-     </table>
+  </td>
+  <td>Rappresenta il numero di risultati
+  da skippare (o, detta in altri termini, il primo risultato da restituire)</td>
+  </tr>
+  <tr>
+  <td>
 
-    Restituisce una lista JSON di pezzi musicali. Questa rotta **è paginata** e richiede pertanto due parametri nel query string:
+`limit`
 
-     <table>
-     <thead>
-     <tr>
-     <th>Chiave</th>
-     <th>Valore</th>
-     </tr>
-     </thead>
-     <tbody>
-     <tr>
-     <td>
-
-    `offset`
-
-     </td>
-     <td>Rappresenta il numero di risultati
-     da skippare (o, detta in altri termini, il primo risultato da restituire)</td>
-     </tr>
-     <tr>
-     <td>
-
-    `limit`
-
-     </td>
-     <td>Rappresenta il numero massimo di risultati da restituire (valore massimo 500)</td>
-     </tr>
-     </tbody>
-     </table>
+  </td>
+  <td>Rappresenta il numero massimo di risultati da restituire (valore massimo 500)</td>
+  </tr>
+  </tbody>
+  </table>
 
 I pezzi musicali restituiti dal servizio esterno rispettano tutti il seguente schema:
 
 ```
 {
-    "id": string,
-    "name": string,
-    "author": string,
-    "genre": string,
-    "description": string,
+  "id": string,
+  "name": string,
+  "author": string,
+  "genre": string,
+  "description": string,
 }
 ```
 
